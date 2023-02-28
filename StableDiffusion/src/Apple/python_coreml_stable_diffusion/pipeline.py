@@ -29,7 +29,7 @@ logger.setLevel(logging.INFO)
 import numpy as np
 import os
 
-from python_coreml_stable_diffusion.coreml_model import (
+from src.Apple.python_coreml_stable_diffusion.coreml_model import (
     CoreMLModel,
     _load_mlpackage,
     get_available_compute_units,
