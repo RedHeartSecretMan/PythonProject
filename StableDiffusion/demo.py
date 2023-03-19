@@ -108,7 +108,10 @@ class StableDiffusionImgToImgPipeline(DiffusionPipeline):
         image = inputs
         width, height = image.size
         width, height = map(lambda x: x - x % 8, (width, height))
-        image = image.resize((width, height), resample=Image.Resampling.LANCZOS)
+        try:
+            image = image.resize((width, height), resample=Image.Resampling.LANCZOS)
+        except AttributeError:
+            image = image.resize((width, height))
         image = np.array(image).astype(np.float32) / 255.0
         image = image[None].transpose(0, 3, 1, 2)
         image = torch.from_numpy(image)
@@ -317,7 +320,7 @@ def get_args():
                         help="调整强度 - 取值范围 0~1, 代表文字提示对原图的修改的程度")
 
     parser.add_argument("--sample_num", default=50, type=int,
-                        help="推理的步骤数，一般步骤越大生成的图像质量越高")
+                        help="模型推理的次数 - 即循环执行当前模型的次数")
     parser.add_argument("--batch", default=1, type=int,
                         help="模型并行推理的批量 - 使用多批次数将同时生成多张图像, 2 意味着一次推理将生成 2 张图像, 内存的需求也会较 1 增加")
     parser.add_argument("--height", default=512, type=int,
@@ -514,7 +517,7 @@ def main(_args):
                             image=init_image, 
                             strength=settings.strength,
                             num_inference_steps=settings.num_inference_steps,
-                            guidance_scale=settings.guidance_scale ,
+                            guidance_scale=settings.guidance_scale,
                             generator=generator)
             image = data["images"]
             save_image(image, settings.save_dir, settings.prompt)
