@@ -171,7 +171,7 @@ def main():
     # 获取参数
     args = get_args().__dict__
 
-    args["input_dir"] = ["/Users/WangHao/Downloads/go_subtitle/assets/data"]
+    args["input_dir"] = ["/Users/WangHao/Downloads/"]
 
     # 获取音频或视频文件路径  
     input_dir: str = args.pop("input_dir")
