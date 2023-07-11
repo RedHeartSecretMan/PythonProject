@@ -6,7 +6,8 @@
 *.npy
 *.zip
 *.pyc
-**/*.pth
-**/*.npy
-**/weight
-**/weights
+dataset/
+datssets/
+weight/
+weights/
+Yolov5/datasets/
