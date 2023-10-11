@@ -3,6 +3,7 @@
 .idea
 *.pth
 *.pt
+*.onnx
 *.npy
 *.zip
 *.pyc
