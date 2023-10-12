@@ -7,8 +7,12 @@
 *.npy
 *.zip
 *.pyc
+*.egg-info
 dataset/
 datssets/
 weight/
 weights/
 Yolov5/datasets/
+images/
+output/
+build/
