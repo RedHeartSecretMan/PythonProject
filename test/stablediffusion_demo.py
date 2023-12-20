@@ -1,31 +1,30 @@
+import argparse
+import inspect
 import os
 import re
-import inspect
-import argparse
-from tqdm.auto import tqdm
+from io import BytesIO
 from typing import List, Optional, Union
 
-import torch
-from torch import autocast
-from diffusers import StableDiffusionPipeline
-from diffusers import (
-    AutoencoderKL,
-    DiffusionPipeline,
-    UNet2DConditionModel,
-    DDIMScheduler,
-    DDPMScheduler,
-    PNDMScheduler,
-    LMSDiscreteScheduler,
-    EulerDiscreteScheduler,
-)
-from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
-from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
-
-from PIL import Image
+import matplotlib.pyplot as plot
 import numpy as np
 import requests
-from io import BytesIO
-import matplotlib.pyplot as plot
+import torch
+from diffusers import (
+    AutoencoderKL,
+    DDIMScheduler,
+    DDPMScheduler,
+    DiffusionPipeline,
+    EulerDiscreteScheduler,
+    LMSDiscreteScheduler,
+    PNDMScheduler,
+    StableDiffusionPipeline,
+    UNet2DConditionModel,
+)
+from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
+from PIL import Image
+from torch import autocast
+from tqdm.auto import tqdm
+from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 
 
 def optional_str(string):

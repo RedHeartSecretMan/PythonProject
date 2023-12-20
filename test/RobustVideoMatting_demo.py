@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
+
 from RobustVideoMatting.inference_utils import VideoReader, VideoWriter
 from RobustVideoMatting.model import MattingNetwork
 
