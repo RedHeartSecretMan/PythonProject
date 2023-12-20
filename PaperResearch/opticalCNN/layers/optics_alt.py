@@ -21,7 +21,7 @@ def apply_camera_curve(image):
 
 def fspecial(shape=(3,3),sigma=0.5):
     """
-    2D gaussian mask - should give the same results as MATLAB's
+    2D gaussian mask - should give the same result as MATLAB's
     fspecial('gaussian',[shape],[sigma])
     """
     m,n = [(ss-1.)/2. for ss in shape]

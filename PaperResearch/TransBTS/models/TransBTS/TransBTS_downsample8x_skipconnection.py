@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
-from TransBTS.models.TransBTS.Transformer import TransformerModel
-from TransBTS.models.TransBTS.PositionalEncoding import FixedPositionalEncoding, LearnedPositionalEncoding
-from TransBTS.models.TransBTS.Unet_skipconnection import Unet
+from models.TransBTS.Transformer import TransformerModel
+from models.TransBTS.PositionalEncoding import FixedPositionalEncoding,LearnedPositionalEncoding
+from models.TransBTS.Unet_skipconnection import Unet
 
 
 class TransformerBTS(nn.Module):
@@ -71,7 +71,7 @@ class TransformerBTS(nn.Module):
                 padding=1
             )
 
-        self.Unet = Unet(in_channels=3, base_channels=16, num_classes=3)
+        self.Unet = Unet(in_channels=4, base_channels=16, num_classes=4)
         self.bn = nn.BatchNorm3d(128)
         self.relu = nn.ReLU(inplace=True)
 
@@ -143,8 +143,8 @@ class TransformerBTS(nn.Module):
         x = x.view(
             x.size(0),
             int(self.img_dim / self.patch_dim),
-            int(self.img_dim / (self.patch_dim / 4)),
-            int(self.img_dim / (self.patch_dim / 4)),
+            int(self.img_dim / self.patch_dim),
+            int(self.img_dim / self.patch_dim),
             self.embedding_dim,
         )
         x = x.permute(0, 4, 1, 2, 3).contiguous()
@@ -198,7 +198,7 @@ class BTS(TransformerBTS):
         self.DeUp2 = DeUp_Cat(in_channels=self.embedding_dim//16, out_channels=self.embedding_dim//32)
         self.DeBlock2 = DeBlock(in_channels=self.embedding_dim//32)
 
-        self.endconv = nn.Conv3d(self.embedding_dim // 32, 3, kernel_size=1)
+        self.endconv = nn.Conv3d(self.embedding_dim // 32, 4, kernel_size=1)
 
 
     def decode(self, x1_1, x2_1, x3_1, x, intmd_x, intmd_layers=[1, 2, 3, 4]):
@@ -319,10 +319,10 @@ class DeBlock(nn.Module):
 def TransBTS(dataset='brats', _conv_repr=True, _pe_type="learned"):
 
     if dataset.lower() == 'brats':
-        img_dim = 32
-        num_classes = 3
+        img_dim = 128
+        num_classes = 4
 
-    num_channels = 3
+    num_channels = 4
     patch_dim = 8
     aux_layers = [1, 2, 3, 4]
     model = BTS(
@@ -345,11 +345,11 @@ def TransBTS(dataset='brats', _conv_repr=True, _pe_type="learned"):
 
 if __name__ == '__main__':
     with torch.no_grad():
-        # import os
-        # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-        device = torch.device('cpu')
-        x = torch.rand((1, 3, 32, 128, 128), device=device)
+        import os
+        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+        cuda0 = torch.device('cuda:0')
+        x = torch.rand((1, 4, 128, 128, 128), device=cuda0)
         _, model = TransBTS(dataset='brats', _conv_repr=True, _pe_type="learned")
-        # model.to(device)
+        model.cuda()
         y = model(x)
         print(y.shape)

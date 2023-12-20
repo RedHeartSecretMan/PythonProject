@@ -34,8 +34,8 @@ class PsfGenerator3D:
 
         self.n = n
 
-        kx = np.fft.fftfreq(self.Nx, self.dx) * -1
-        ky = np.fft.fftfreq(self.Ny, self.dy) * -1
+        kx = np.fft.fftfreq(self.Nx, self.dx)
+        ky = np.fft.fftfreq(self.Ny, self.dy)
 
         z = self.dz * (np.arange(self.Nz) - self.Nz // 2)
 

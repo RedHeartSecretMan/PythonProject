@@ -72,7 +72,7 @@ def nm_polynomial(n, m, rho, theta, normed=True):
     radial *= (rho <= 1.)
 
     if normed:
-        prefac = 1. / nm_normalization(n, m) / np.sqrt(np.pi)
+        prefac = 1. / nm_normalization(n, m)
     else:
         prefac = 1.
     if m >= 0:
@@ -83,11 +83,10 @@ def nm_polynomial(n, m, rho, theta, normed=True):
 
 @lru_cache(maxsize=32)
 def rho_theta(size):
-    dy = np.linspace(1, -1, size)
-    dx = np.linspace(-1, 1, size)
-    y, x = np.meshgrid(dy, dx, indexing='ij')  # 原点左上，左 y 轴，上 x 轴
-    rho = np.hypot(y, x)  # 直角坐标系求直角三角形斜边，均等分为极径
-    theta = np.arctan2(y, x)  # 求正切角对边 args1 邻边 args2，均等分为极角
+    r = np.linspace(-1,1,size)
+    X,Y = np.meshgrid(r,r, indexing='ij')
+    rho = np.hypot(X,Y)
+    theta = np.arctan2(Y,X)
     return rho, theta
 
 

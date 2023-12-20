@@ -16,35 +16,6 @@ def FCALayer(input, channel, reduction=16, size_psc=128):
     return mul
 
 
-import torch
-class FCALayer():
-    def __init__(self, channels_in, channels_out, reductions=16, sizes=(128, 128), gammas=0.8):
-        self.channels_in = channels_in
-        self.channels_out = channels_out
-        self.reductions = reductions
-        self.sizes = sizes
-        self.gammas = gammas
-        self.conv1 = torch.nn.Conv2d(self.channels_in, self.channels_out, kernel_size=(3, 3), padding=1)
-        self.conv2 = torch.nn.Conv2d(self.channels_out, self.channels_out // self.reductions, kernel_size=(1, 1))
-        self.conv3 = torch.nn.Conv2d(self.channels_out // self.reductions, self.channels_out, kernel_size=(1, 1))
-        self.relu = torch.nn.ReLU(inplace=True)
-        self.sigmoid = torch.nn.Sigmoid()
-
-    def forword(self, inputs):
-        x = torch.fft.fft2(inputs)
-        x = torch.pow(x.abs() + 1e-8, self.gammas)
-        x = torch.fft.fftshift(x)
-        x = torch.nn.UpsamplingNearest2d(self.sizes)(x)
-        x = self.conv1(x)
-        w = torch.mean(x, (-2, -1), keepdim=True)
-        w = self.conv2(w)
-        w = self.relu(w)
-        w = self.conv3(w)
-        w = self.sigmoid(w)
-        outputs = torch.multiply(inputs, w)
-        return outputs
-
-
 def FCAB(input, channel, size_psc=128):
     conv = Conv2D(channel, kernel_size=3, padding='same')(input)
     conv = Lambda(gelu)(conv)

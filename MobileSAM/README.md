@@ -2,12 +2,15 @@
   <img src="assets/logo2.png?raw=true" width="99.1%" />
 </p>
 
-# Faster Segment Anything (MobileSAM)
-:pushpin: MobileSAM paper is available at [ResearchGate](https://www.researchgate.net/publication/371851844_Faster_Segment_Anything_Towards_Lightweight_SAM_for_Mobile_Applications) and [arXiv](https://arxiv.org/pdf/2306.14289.pdf). 
+# Faster Segment Anything (MobileSAM) and Everything (MobileSAMv2)
+:pushpin: MobileSAMv2, available at [ResearchGate](https://www.researchgate.net/publication/376579294_MobileSAMv2_Faster_Segment_Anything_to_Everything) and [arXiv](https://arxiv.org/abs/2312.09579.pdf), replaces the grid-search prompt sampling in SAM with object-aware prompt sampling for faster **segment everything(SegEvery)**.
 
-:pushpin: **Support for ONNX model export**. Feel free to test it on your devices and share your results with us.
+:pushpin: MobileSAM, available at [ResearchGate](https://www.researchgate.net/publication/371851844_Faster_Segment_Anything_Towards_Lightweight_SAM_for_Mobile_Applications) and [arXiv](https://arxiv.org/pdf/2306.14289.pdf), replaces the heavyweight image encoder in SAM with a lightweight image encoder for faster **segment anything(SegAny)**. 
 
-:pushpin: **A demo of MobileSAM** running on **CPU** is open at [hugging face demo](https://huggingface.co/spaces/dhkim2810/MobileSAM). On our own Mac i5 CPU, it takes around 3s. On the hugging face demo, the interface and inferior CPUs make it slower but still works fine. Stayed tuned for a new version with more features! You can also run a demo of MobileSAM on [your local PC](https://github.com/ChaoningZhang/MobileSAM/tree/master/app).
+
+**Support for ONNX model export**. Feel free to test it on your devices and share your results with us.
+
+**A demo of MobileSAM** running on **CPU** is open at [hugging face demo](https://huggingface.co/spaces/dhkim2810/MobileSAM). On our own Mac i5 CPU, it takes around 3s. On the hugging face demo, the interface and inferior CPUs make it slower but still works fine. Stayed tuned for a new version with more features! You can also run a demo of MobileSAM on [your local PC](https://github.com/ChaoningZhang/MobileSAM/tree/master/app).
 
 :grapes: Media coverage and Projects that adapt from SAM to MobileSAM (Thank you all!)
 * **2023/07/03**: [joliGEN](https://github.com/jolibrain/joliGEN) supports MobileSAM for faster and lightweight mask refinement for image inpainting with Diffusion and GAN.
@@ -145,7 +148,14 @@ from mobile_sam import SamAutomaticMaskGenerator
 mask_generator = SamAutomaticMaskGenerator(mobile_sam)
 masks = mask_generator.generate(<your_image>)
 ```
+## <a name="GettingStarted"></a>Getting Started (MobileSAMv2)
+Download the model weights from the [checkpoints](https://drive.google.com/file/d/1dE-YAG-1mFCBmao2rHDp0n-PP4eH7SjE/view?usp=sharing).
 
+After downloading the model weights, faster SegEvery with MobileSAMv2 can be simply used as follows:
+```
+cd MobileSAMv2
+bash ./experiments/mobilesamv2.sh
+```
 ## ONNX Export
 **MobileSAM** now supports ONNX export. Export the model with
 
@@ -170,6 +180,8 @@ If you use MobileSAM in your research, please use the following BibTeX entry. :m
 ```
 
 ## Acknowledgement
+
+This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT) (No.RS-2022-00155911, Artificial Intelligence Convergence Innovation Human Resources Development (Kyung Hee University))
 
 <details>
 <summary>

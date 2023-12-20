@@ -47,10 +47,9 @@ Author: Chang Qiao<sup>1,#</sup>, Di Li<sup>2,#</sup>, Yuting Guo<sup>2,#</sup>,
 - Run `bash demo_predict.sh` in your terminal. Note that before running the bash file, you should check if the data paths and other arguments in `demo_predict.sh` are set correctly
 - The output SR images will be saved in `--data_dir`
 - Typical results:<br>
-<p align="center"><img width="800" src="figures/例子.jpg"></p>
+<p align="center"><img width="800" src="figures/DFGAN_output.jpg"></p>
 
 ## Train a new model
-
 - Data for training: You can train a new DFCAN/DFGAN model using [BioSR](https://doi.org/10.1038/s41592-020-01048-5) or your own datasets. Note that you'd better divide the dataset of each specimen into training part and validation/testing part before training, so that you can test your model with the preserved validation/testing data
 - Data augumentation: run `./data_agmt_matlab/DataAugmentation_ForTrain.m` with MATLAB to creat image patch pairs of BioSR datasets. Before running, you should check image paths and some parameters following the instructions in `./data_agmt_matlab/DataAugumentation_ForTrain.m`. After running, the augumented data is saved in `./dataset/train` by default
 - Run `bash demo_train.sh` in your terminal to train a new DFCAN model. Similar to testing, before running the bash file, you should check if the data paths and the arguments are set correctly

@@ -6,7 +6,7 @@ import keras
 import keras.backend as K
 from keras.layers import *
 from keras.models import Model
-from keras.optimizers import adam_v2 as Adam
+from keras.optimizers import Adam
 from keras.callbacks import ReduceLROnPlateau, TensorBoard
 
 from csbdeep.utils import _raise, axes_check_and_normalize, normalize
@@ -123,6 +123,7 @@ class Data:
             self.crop_flag =  False
 
         return psf, phi.amplitudes_requested
+
 
     def generator(self):
         while True:
@@ -268,7 +269,7 @@ class PhaseNet(BaseModel):
         if self.config.planes is not None:
             _p = np.array(self.config.planes)
             if self.config.crop_shape is None:
-                self.config.model_input_shape = tuple((_p.shape[0],self.config.psf_shape[1],self.config.psf_shape[2]))
+                config.model_input_shape = tuple((_p.shape[0],self.config.psf_shape[1],self.config.psf_shape[2]))
             else:
                 model_input_shape = tuple((_p.shape[0],self.config.crop_shape[1],self.config.crop_shape[2]))
         elif self.config.crop_shape is not None:

@@ -406,8 +406,6 @@ class FastSAMPrompt:
             orig_masks_area = torch.sum(masks, dim=(1, 2))
 
             union = bbox_area + orig_masks_area - masks_area
-
-            union = bbox_area + orig_masks_area - masks_area
             IoUs = masks_area / union
             max_iou_index.append(int(torch.argmax(IoUs)))
         max_iou_index = list(set(max_iou_index))
