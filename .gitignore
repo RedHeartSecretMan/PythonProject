@@ -20,14 +20,6 @@ logs
 result
 results
 
-*.zip
-*.tar
-*.gz
-*.rar
-*.7z
-*.bz2
-*.xz
-
 *.jpg
 *.jpeg
 *.png
@@ -45,6 +37,14 @@ results
 *.doc
 *.xls
 *.xlsx
+
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.bz2
+*.xz
 
 *.npy
 *.h5
