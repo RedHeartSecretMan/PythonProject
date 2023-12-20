@@ -12,8 +12,12 @@
 __pycache__
 
 data
+datas
 build
+builds
+log
 logs
+result
 results
 
 *.zip
