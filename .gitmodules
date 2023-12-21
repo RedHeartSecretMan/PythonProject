@@ -1,3 +1,18 @@
+[submodule "PaperResearch/DL-SR"]
+	path = PaperResearch/DL-SR
+	url = https://github.com/qc17-THU/DL-SR.git
+[submodule "PaperResearch/opticalCNN"]
+	path = PaperResearch/opticalCNN
+	url = https://github.com/computational-imaging/opticalCNN.git
+[submodule "PaperResearch/phasenet"]
+	path = PaperResearch/phasenet
+	url = https://github.com/mpicbg-csbd/phasenet.git
+[submodule "PaperResearch/tamingtransformer"]
+	path = PaperResearch/tamingtransformer
+	url = https://github.com/AmmadDeveloper/tamingtransformer.git
+[submodule "PaperResearch/TransBTS"]
+	path = PaperResearch/TransBTS
+	url = https://github.com/Rubics-Xuan/TransBTS.git
 [submodule "CLIP"]
 	path = CLIP
 	url = https://github.com/openai/CLIP.git
@@ -40,18 +55,6 @@
 [submodule "whisper"]
 	path = whisper
 	url = https://github.com/openai/whisper.git
-[submodule "PaperResearch/DL-SR"]
-	path = PaperResearch/DL-SR
-	url = https://github.com/qc17-THU/DL-SR.git
-[submodule "PaperResearch/opticalCNN"]
-	path = PaperResearch/opticalCNN
-	url = https://github.com/computational-imaging/opticalCNN.git
-[submodule "PaperResearch/phasenet"]
-	path = PaperResearch/phasenet
-	url = https://github.com/mpicbg-csbd/phasenet.git
-[submodule "PaperResearch/tamingtransformer"]
-	path = PaperResearch/tamingtransformer
-	url = https://github.com/AmmadDeveloper/tamingtransformer.git
-[submodule "PaperResearch/TransBTS"]
-	path = PaperResearch/TransBTS
-	url = https://github.com/Rubics-Xuan/TransBTS.git
+[submodule "GroundingDINO"]
+	path = GroundingDINO
+	url = https://github.com/IDEA-Research/GroundingDINO.git
