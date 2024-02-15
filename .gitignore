@@ -1,4 +1,5 @@
 .git
+.fake
 .idea
 .cache
 .vscode
@@ -19,6 +20,8 @@ log
 logs
 result
 results
+resource
+resources
 
 *.jpg
 *.jpeg
