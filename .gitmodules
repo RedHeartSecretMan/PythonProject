@@ -58,3 +58,6 @@
 [submodule "GroundingDINO"]
 	path = GroundingDINO
 	url = https://github.com/IDEA-Research/GroundingDINO.git
+[submodule "GPT-SoVITS"]
+	path = GPT-SoVITS
+	url = git@github.com:RVC-Boss/GPT-SoVITS.git
