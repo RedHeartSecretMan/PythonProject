@@ -2,7 +2,9 @@
 .fake
 .idea
 .venv
+.venv*
 .conda
+.conda*
 .cache
 .vscode
 .DS_Store
