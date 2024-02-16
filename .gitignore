@@ -1,6 +1,8 @@
 .git
 .fake
 .idea
+.venv
+.conda
 .cache
 .vscode
 .DS_Store
