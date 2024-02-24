@@ -52,6 +52,7 @@ resources
 *.7z
 *.bz2
 *.xz
+*.whl
 
 *.npy
 *.h5
