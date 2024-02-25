@@ -4,6 +4,8 @@ import glob
 import numpy as np
 import os
 import torch
+
+os.environ["BASICSR_JIT"] = "True"
 from basicsr.utils import imwrite
 
 from gfpgan import GFPGANer
@@ -32,7 +34,7 @@ def main():
         "--version",
         type=str,
         default="1.3",
-        help="GFPGAN model version. Option: 1 | 1.2 | 1.3 | 1.4 | 2. Default: 1.3",
+        help="GFPGAN model version. Option: 1 | 1.2 | 1.3 | 1.4 | RestoreFormer. Default: 1",
     )
     parser.add_argument(
         "-s",
