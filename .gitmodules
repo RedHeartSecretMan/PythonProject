@@ -64,3 +64,6 @@
 [submodule "Vary"]
 	path = Vary
 	url = git@github.com:Ucas-HaoranWei/Vary.git
+[submodule "transformers"]
+	path = transformers
+	url = git@github.com:huggingface/transformers.git
