@@ -61,9 +61,9 @@
 [submodule "GPT-SoVITS"]
 	path = GPT-SoVITS
 	url = git@github.com:RVC-Boss/GPT-SoVITS.git
-[submodule "Vary"]
-	path = Vary
-	url = git@github.com:Ucas-HaoranWei/Vary.git
 [submodule "transformers"]
 	path = transformers
 	url = git@github.com:huggingface/transformers.git
+[submodule "PaperResearch/Vary"]
+	path = PaperResearch/Vary
+	url = git@github.com:Ucas-HaoranWei/Vary.git
