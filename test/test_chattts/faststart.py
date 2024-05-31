@@ -16,7 +16,7 @@ torch._dynamo.config.suppress_errors = True
 torch.set_float32_matmul_precision("high")
 
 chat = ChatTTS.Chat()
-chat.load_models(source="local", local_path="chattts/models/nosft")
+chat.load_models(source="local", local_path="chattts/resources/nosft")
 
 texts = ["中午好，我的朋友ChatTTS。"]
 

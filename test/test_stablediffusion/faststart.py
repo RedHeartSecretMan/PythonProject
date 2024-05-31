@@ -2,6 +2,7 @@ import argparse
 import inspect
 import os
 import re
+import sys
 from io import BytesIO
 from typing import List, Optional, Union
 
@@ -13,6 +14,11 @@ from PIL import Image
 from torch import autocast
 from tqdm.auto import tqdm
 
+sys.path.append(
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, "diffusers/src")
+    )
+)
 from diffusers import (
     AutoencoderKL,
     DDIMScheduler,
