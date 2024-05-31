@@ -1,0 +1,9 @@
+omegaconf
+torch
+tqdm
+einops
+vector_quantize_pytorch
+transformers
+vocos
+sounddevice
+soundfile
