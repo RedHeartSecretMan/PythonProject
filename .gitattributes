@@ -1,18 +1,75 @@
-*.zip filter=lfs diff=lfs merge=lfs -text
-*.tar filter=lfs diff=lfs merge=lfs -text
-*.gz filter=lfs diff=lfs merge=lfs -text
-*.rar filter=lfs diff=lfs merge=lfs -text
-*.7z filter=lfs diff=lfs merge=lfs -text
-*.bz2 filter=lfs diff=lfs merge=lfs -text
-*.xz filter=lfs diff=lfs merge=lfs -text
-
-*.npy filter=lfs diff=lfs merge=lfs -text
-*.h5 filter=lfs diff=lfs merge=lfs -text
-*.pb filter=lfs diff=lfs merge=lfs -text
-*.pt filter=lfs diff=lfs merge=lfs -text
-*.pth filter=lfs diff=lfs merge=lfs -text
-*.bin filter=lfs diff=lfs merge=lfs -text
-*.trt filter=lfs diff=lfs merge=lfs -text
-*.onnx filter=lfs diff=lfs merge=lfs -text
-*.safetensors filter=lfs diff=lfs merge=lfs -text
-*.torchscript filter=lfs diff=lfs merge=lfs -text
+[submodule "PaperResearch/DL-SR"]
+	path = PaperResearch/DL-SR
+	url = https://github.com/qc17-THU/DL-SR.git
+[submodule "PaperResearch/opticalCNN"]
+	path = PaperResearch/opticalCNN
+	url = https://github.com/computational-imaging/opticalCNN.git
+[submodule "PaperResearch/phasenet"]
+	path = PaperResearch/phasenet
+	url = https://github.com/mpicbg-csbd/phasenet.git
+[submodule "PaperResearch/tamingtransformer"]
+	path = PaperResearch/tamingtransformer
+	url = https://github.com/AmmadDeveloper/tamingtransformer.git
+[submodule "PaperResearch/TransBTS"]
+	path = PaperResearch/TransBTS
+	url = https://github.com/Rubics-Xuan/TransBTS.git
+[submodule "CLIP"]
+	path = CLIP
+	url = https://github.com/openai/CLIP.git
+[submodule "facefusion"]
+	path = facefusion
+	url = https://github.com/facefusion/facefusion.git
+[submodule "FastSAM"]
+	path = FastSAM
+	url = https://github.com/CASIA-IVA-Lab/FastSAM.git
+[submodule "GFPGAN"]
+	path = GFPGAN
+	url = https://github.com/TencentARC/GFPGAN.git
+[submodule "llama"]
+	path = llama
+	url = https://github.com/facebookresearch/llama.git
+[submodule "ml-stable-diffusion"]
+	path = ml-stable-diffusion
+	url = https://github.com/apple/ml-stable-diffusion.git
+[submodule "MobileSAM"]
+	path = MobileSAM
+	url = https://github.com/ChaoningZhang/MobileSAM.git
+[submodule "RobustVideoMatting"]
+	path = RobustVideoMatting
+	url = https://github.com/PeterL1n/RobustVideoMatting.git
+[submodule "Real-ESRGAN"]
+	path = Real-ESRGAN
+	url = https://github.com/xinntao/Real-ESRGAN.git
+[submodule "segment-anything"]
+	path = segment-anything
+	url = https://github.com/facebookresearch/segment-anything.git
+[submodule "spleeter"]
+	path = spleeter
+	url = https://github.com/deezer/spleeter.git
+[submodule "stablediffusion"]
+	path = stablediffusion
+	url = https://github.com/Stability-AI/stablediffusion.git
+[submodule "ultralytics"]
+	path = ultralytics
+	url = https://github.com/ultralytics/ultralytics.git
+[submodule "whisper"]
+	path = whisper
+	url = https://github.com/openai/whisper.git
+[submodule "GroundingDINO"]
+	path = GroundingDINO
+	url = https://github.com/IDEA-Research/GroundingDINO.git
+[submodule "GPT-SoVITS"]
+	path = GPT-SoVITS
+	url = git@github.com:RVC-Boss/GPT-SoVITS.git
+[submodule "transformers"]
+	path = transformers
+	url = git@github.com:huggingface/transformers.git
+[submodule "PaperResearch/Vary"]
+	path = PaperResearch/Vary
+	url = git@github.com:Ucas-HaoranWei/Vary.git
+[submodule "diffusers"]
+	path = diffusers
+	url = git@github.com:huggingface/diffusers.git
+[submodule "ChatTTS"]
+	path = ChatTTS
+	url = https://github.com/2noise/ChatTTS.git
