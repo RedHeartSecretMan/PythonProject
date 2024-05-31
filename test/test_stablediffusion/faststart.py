@@ -9,6 +9,10 @@ import matplotlib.pyplot as plot
 import numpy as np
 import requests
 import torch
+from PIL import Image
+from torch import autocast
+from tqdm.auto import tqdm
+
 from diffusers import (
     AutoencoderKL,
     DDIMScheduler,
@@ -21,9 +25,6 @@ from diffusers import (
     UNet2DConditionModel,
 )
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
-from PIL import Image
-from torch import autocast
-from tqdm.auto import tqdm
 from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 
 
@@ -376,7 +377,10 @@ def get_args():
         help="提示词 - 模型将根据提示词的描述内容生成图像, 一般可分三个部分主体内容(horse, dog, human, mountain)、抽象风格样式(Portrait, Edgar, Rembrandt)和补充润色(4k, beautiful, epic)",
     )
     parser.add_argument(
-        "--image_url", default=None, type=optional_str, help="输入图像链接 - 指定输入图片网址或者本地图片路径"
+        "--image_url",
+        default=None,
+        type=optional_str,
+        help="输入图像链接 - 指定输入图片网址或者本地图片路径",
     )
 
     parser.add_argument(
@@ -393,7 +397,10 @@ def get_args():
     )
 
     parser.add_argument(
-        "--num_inference_steps", default=50, type=int, help="推理的步骤数 - 一般步骤越大生成的图像质量越高"
+        "--num_inference_steps",
+        default=50,
+        type=int,
+        help="推理的步骤数 - 一般步骤越大生成的图像质量越高",
     )
     parser.add_argument(
         "--guidance_scale",
@@ -402,11 +409,17 @@ def get_args():
         help="无分类指导因子 - 能让生成图像匹配文字提示, 稳定扩散, 取值范围 0~20, 过高会牺牲图像质量或多样性, 建议值 7~8.5",
     )
     parser.add_argument(
-        "--strength", default=0.75, type=int, help="调整强度 - 取值范围 0~1, 代表文字提示对原图的修改的程度"
+        "--strength",
+        default=0.75,
+        type=int,
+        help="调整强度 - 取值范围 0~1, 代表文字提示对原图的修改的程度",
     )
 
     parser.add_argument(
-        "--sample_num", default=50, type=int, help="模型推理的次数 - 即循环执行当前模型的次数"
+        "--sample_num",
+        default=50,
+        type=int,
+        help="模型推理的次数 - 即循环执行当前模型的次数",
     )
     parser.add_argument(
         "--batch",

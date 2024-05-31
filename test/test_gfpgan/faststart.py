@@ -1,13 +1,13 @@
 import argparse
-import cv2
 import glob
-import numpy as np
 import os
+
+import cv2
+import numpy as np
 import torch
 
 os.environ["BASICSR_JIT"] = "True"
 from basicsr.utils import imwrite
-
 from gfpgan import GFPGANer
 
 

@@ -1,31 +1,34 @@
-.git
-.fake
-.idea
-.venv
-.venv*
-.conda
-.conda*
-.cache
-.vscode
-.DS_Store
-._.DS_Store
-.clang-format
-.ipynb_checkpoints
+# 目录
+.git/
+.fake/
+.idea/
+.vscode/
+.cache/
+.venv*/
+.conda*/
 
-*.dSYM
-*.egg-info
-__pycache__
+__pycache__/
+.ipynb_checkpoints/
+*.dSYM/
+*.egg-info/
 
-data
-datas
-build
-builds
-log
-logs
-result
-results
-resource
-resources
+*data/
+*datas/
+*build/
+*builds/
+*dist/
+*dists/
+*log/
+*logs/
+*result/
+*results/
+*resource/
+*resources/
+
+
+# 文件
+*.clang-format
+*.DS_Store
 
 *.jpg
 *.jpeg
@@ -53,18 +56,24 @@ resources
 *.bz2
 *.xz
 *.whl
+*.pkl
+*.pickle
+*.db
 
 *.npy
 *.h5
 *.pb
 *.pt
 *.pth
+*.ckpt
 *.bin
 *.trt
 *.onnx
 *.safetensors
 *.torchscript
 
+
+# 排除
 !**/assets/**
 !**/requirements.txt
 !**/CMakeLists.txt

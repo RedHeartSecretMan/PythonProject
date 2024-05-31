@@ -21,7 +21,9 @@ rec = [None] * 4  # 初始记忆
 
 with torch.no_grad():
     for src in DataLoader(reader):
-        fgr, pha, *rec = model(src, *rec, downsample_ratio=0.25)  # 将上一帧的记忆给下一帧
+        fgr, pha, *rec = model(
+            src, *rec, downsample_ratio=0.25
+        )  # 将上一帧的记忆给下一帧
         writer.write(fgr * pha + bgr * (1 - pha))
 
 writer.close()
