@@ -7,3 +7,4 @@ transformers
 vocos
 sounddevice
 soundfile
+jupyter
