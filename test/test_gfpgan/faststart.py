@@ -6,7 +6,8 @@ import cv2
 import numpy as np
 import torch
 
-os.environ["BASICSR_JIT"] = "True"
+if torch.cuda.is_available():
+    os.environ["BASICSR_JIT"] = "True"
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
 
@@ -18,8 +19,8 @@ def main():
         "-i",
         "--input",
         type=str,
-        default="inputs",
-        help="Input image or folder. Default: inputs",
+        default="datas/default",
+        help="Input image or folder. Default: datas/default",
     )
     parser.add_argument(
         "-o",
