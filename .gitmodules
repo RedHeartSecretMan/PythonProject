@@ -79,3 +79,6 @@
 [submodule "ollama"]
 	path = ollama
 	url = git@github.com:ollama/ollama.git
+[submodule "langchain"]
+	path = langchain
+	url = git@github.com:langchain-ai/langchain.git
