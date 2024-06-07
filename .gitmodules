@@ -82,3 +82,6 @@
 [submodule "langchain"]
 	path = langchain
 	url = git@github.com:langchain-ai/langchain.git
+[submodule "GLM-4"]
+	path = GLM-4
+	url = git@github.com:THUDM/GLM-4.git
