@@ -15,7 +15,15 @@ sys.path.append(
 from inference_utils import VideoReader, VideoWriter
 from model import MattingNetwork
 
-model = MattingNetwork(variant="resnet50").eval()  # 或 variant="resnet50"
+
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+else:
+    device = torch.device("cpu")
+
+model = MattingNetwork(variant="resnet50").eval().to(device)
 weights = torch.load("robustvideomatting/weights/rvm_resnet50.pth")
 model.load_state_dict(weights)
 
@@ -25,14 +33,14 @@ reader = VideoReader(input_path, transform=ToTensor())
 output_dir = "results/mp4"
 output_path = os.path.join(output_dir, "1.mp4")
 os.makedirs(output_dir, exist_ok=True)
-writer = VideoWriter(output_path, frame_rate=30)
+writer = VideoWriter(output_path, frame_rate=reader.frame_rate)
 
-bgr = torch.tensor([0.47, 1, 0.6]).view(3, 1, 1)  # 绿背景
+bgr = torch.tensor([0.47, 1, 0.6]).view(3, 1, 1).to(device)  # 绿背景
 rec = [None] * 4  # 初始状态
-downsample_ratio = 0.25  # 下采样率
+downsample_ratio = 0.125  # 下采样率1080P使用0.25，4K使用0.125
 
 with torch.no_grad():
     for src in DataLoader(reader):
-        fgr, pha, *rec = model(src, *rec, downsample_ratio)
+        fgr, pha, *rec = model(src.to(device), *rec, downsample_ratio)
         com = fgr * pha + bgr * (1 - pha)
         writer.write(com)

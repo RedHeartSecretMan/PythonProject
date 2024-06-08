@@ -8,6 +8,7 @@ import torch
 
 if torch.cuda.is_available():
     os.environ["BASICSR_JIT"] = "True"
+    os.environ["TORCH_CUDA_ARCH_LIST"] = "8.9"
 from basicsr.utils import imwrite
 from gfpgan import GFPGANer
 
