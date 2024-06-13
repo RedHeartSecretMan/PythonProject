@@ -8,3 +8,7 @@ vocos
 sounddevice
 soundfile
 jupyter
+cython
+pynini
+wetextprocessing
+nemo_text_processing

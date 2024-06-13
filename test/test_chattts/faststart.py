@@ -2,6 +2,7 @@ import os
 import sys
 
 import sounddevice as sd
+import soundfile as sf
 import torch
 
 sys.path.append(
@@ -18,8 +19,10 @@ torch.set_float32_matmul_precision("high")
 chat = ChatTTS.Chat()
 chat.load_models(source="local", local_path="chattts/resources/nosft")
 
-texts = ["中午好，我的朋友ChatTTS。"]
-
+texts = ["我的朋友 ChatTTS，早上好，中午好，晚上好。"]
 wavs = chat.infer(texts)
-sd.play(wavs[0].transpose(1, 0), samplerate=24000)
+
+# sounddevice and soundfile input data shape is (num_samples, num_channels)
+sd.play(data=wavs[0].T, samplerate=24000)
 sd.wait()
+sf.write(file="results/faststart.wav", data=wavs[0].T, samplerate=24_000)
