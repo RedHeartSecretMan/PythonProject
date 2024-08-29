@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 import numpy as np
 import torch
@@ -12,7 +13,6 @@ elif torch.backends.mps.is_available():
     device = torch.device("mps")
 else:
     device = torch.device("cpu")
-print(f"using device: {device}")
 
 if device.type == "cuda":
     # use bfloat16 for the entire notebook
@@ -37,7 +37,7 @@ from hydra.utils import instantiate
 def build_sam2(
     config_file,
     ckpt_path=None,
-    device="cuda",
+    device=torch.device("cpu"),
     mode="eval",
     hydra_overrides_extra=[],
     apply_postprocessing=True,
@@ -54,13 +54,11 @@ def build_sam2(
         ]
 
     # Assuming config_file is a path to the configuration file, extract the directory and file name
-    config_dir = "/".join(config_file.split("/")[:-1])  # Directory path
-    config_name = config_file.split("/")[-1].replace(
-        ".yaml", ""
-    )  # File name without extension
+    config_dir = os.path.dirname(config_file)
+    config_name = os.path.splitext(os.path.basename(config_file))[0]
 
     # Initialize Hydra with the config path
-    with initialize(config_path=config_dir):
+    with initialize(config_path=config_dir, version_base="1.1"):
         cfg = compose(config_name=config_name, overrides=hydra_overrides_extra)
 
     # Resolve any interpolations in the configuration
