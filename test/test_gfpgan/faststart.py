@@ -123,7 +123,7 @@ def main():
             )
             bg_upsampler = RealESRGANer(
                 scale=2,
-                model_path="gfpgan/weights/RealESRGAN_x2plus.pth",
+                model_path="stores/weights/RealESRGAN_x2plus.pth",
                 model=model,
                 tile=args.bg_tile,
                 tile_pad=10,
@@ -168,7 +168,7 @@ def main():
     # determine model paths
     model_path = os.path.join("experiments/pretrained_models", f"{model_name}.pth")
     if not os.path.isfile(model_path):
-        model_path = os.path.join("gfpgan/weights", f"{model_name}.pth")
+        model_path = os.path.join("stores/weights", f"{model_name}.pth")
     if not os.path.isfile(model_path):
         # download pre-trained models from url
         model_path = url

@@ -17,7 +17,7 @@ torch._dynamo.config.suppress_errors = True  # type: ignore
 torch.set_float32_matmul_precision("high")
 
 chat = ChatTTS.Chat()
-chat.load_models(source="local", local_path="chattts/resources/nosft")
+chat.load_models(source="local", local_path="stores/nosft")
 
 texts = ["我的朋友 ChatTTS，早上好，中午好，晚上好。"]
 wavs = chat.infer(texts)

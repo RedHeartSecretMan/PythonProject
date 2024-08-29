@@ -1,13 +1,11 @@
 import os
-import sys
 
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
-sys.path.append(os.path.abspath(os.getcwd()))
 
 from PIL import Image
 import numpy as np
 import torch
-from utils.build_sam2 import build_sam2, build_sam2_video_predictor
+from sam2.build_sam import build_sam2, build_sam2_video_predictor
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 
 
@@ -33,11 +31,11 @@ elif device.type == "mps":
         "See e.g. https://github.com/pytorch/pytorch/issues/84936 for a discussion."
     )
 
-mode = "video"
+mode = "image"
 if mode == "image":
-    sam2_checkpoint = "./sam2/checkpoints/sam2_hiera_large.pt"
-    sam2_config = "../sam2/configs/sam2_hiera_l.yaml"
-    sam2_model = build_sam2(sam2_config, sam2_checkpoint, device=device)
+    sam2_checkpoint = "./stores/sam2/checkpoints/sam2_hiera_large.pt"
+    sam2_config = "sam2_hiera_l.yaml"
+    sam2_model = build_sam2(sam2_config, sam2_checkpoint, device=device.type)
     sam2_predictor = SAM2ImagePredictor(sam2_model)
     image = Image.open("./datas/images/truck.jpg")
     image = np.array(image.convert("RGB"))
@@ -57,9 +55,11 @@ if mode == "image":
         logits = logits[sorted_ind]
 
 elif mode == "video":
-    sam2_checkpoint = "./sam2/checkpoints/sam2_hiera_base_plus.pt"
-    sam2_config = "../sam2/configs/sam2_hiera_b+.yaml"
-    sam2_predictor = build_sam2_video_predictor(sam2_config, sam2_checkpoint)
+    sam2_checkpoint = "./stores/sam2/checkpoints/sam2_hiera_base_plus.pt"
+    sam2_config = "sam2_hiera_b+.yaml"
+    sam2_predictor = build_sam2_video_predictor(
+        sam2_config, sam2_checkpoint, device=device.type
+    )
     video_dir = "./datas/videos/bedroom"
     inference_state = sam2_predictor.init_state(video_path=video_dir)
     frame_index = 0

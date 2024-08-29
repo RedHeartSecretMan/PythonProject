@@ -1,10 +1,11 @@
 from ultralytics import YOLO
 
+
 # Load a model
-model = YOLO("ultralytics/weights/yolov5s.pt")
+model = YOLO("./stores/weights/yolov5su.pt")
 
 # Run batched inference on a list of images
-results = model(["datas/images/zidane.jpg"])
+results = model(["datas/images/bus.jpg"])
 
 # Process results list
 for result in results:
@@ -14,4 +15,4 @@ for result in results:
     probs = result.probs  # Probs object for classification outputs
     obb = result.obb  # Oriented boxes object for OBB outputs
     result.show()  # display to screen
-    result.save(filename="results/zidane.jpg")  # save to disk
+    result.save(filename="results/bus.jpg")  # save to disk

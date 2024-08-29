@@ -24,7 +24,7 @@ else:
     device = torch.device("cpu")
 
 model = MattingNetwork(variant="resnet50").eval().to(device)
-weights = torch.load("robustvideomatting/weights/rvm_resnet50.pth")
+weights = torch.load("stores/weights/rvm_resnet50.pth")
 model.load_state_dict(weights)
 
 input_dir = "datas/mp4"
