@@ -122,3 +122,7 @@
 	path = segment-anything-2
 	url = git@github.com:facebookresearch/segment-anything-2.git
 	branch = main
+[submodule "recognize-anything"]
+	path = recognize-anything
+	url = https://github.com/xinyu1205/recognize-anything.git
+	branch = main
