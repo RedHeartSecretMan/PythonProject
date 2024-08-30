@@ -5,8 +5,10 @@ os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 from PIL import Image
 import numpy as np
 import torch
+import cv2
 from sam2.build_sam import build_sam2, build_sam2_video_predictor
 from sam2.sam2_image_predictor import SAM2ImagePredictor
+from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 
 
 # select the device for computation
@@ -28,6 +30,56 @@ elif device.type == "mps":
         "give numerically different outputs and sometimes degraded performance on MPS. "
         "See e.g. https://github.com/pytorch/pytorch/issues/84936 for a discussion."
     )
+
+
+def draw_anns(anns, save_path, borders=True):
+    if len(anns) == 0:
+        return
+
+    # Sort annotations by area
+    sorted_anns = sorted(anns, key=lambda x: x["area"], reverse=True)
+
+    # Create a blank image with alpha channel
+    img_height, img_width = sorted_anns[0]["segmentation"].shape
+    img = np.ones((img_height, img_width, 4), dtype=np.float32)
+    img[:, :, 3] = 0  # Alpha channel initialization to 0
+
+    for ann in sorted_anns:
+        m = ann["segmentation"]
+
+        # Generate a random color with alpha value 0.5
+        color_mask = np.concatenate([np.random.random(3), [0.5]])
+        color_mask_bgr = tuple(
+            (color_mask[:3] * 255).astype(int)
+        )  # Convert to BGR color
+
+        # Apply color to the mask
+        img[m] = np.concatenate(
+            [
+                np.full(m.shape, color_mask_bgr[0]),
+                np.full(m.shape, color_mask_bgr[1]),
+                np.full(m.shape, color_mask_bgr[2]),
+                np.full(m.shape, color_mask[3]),
+            ],
+            axis=-1,
+        )
+
+        if borders:
+            # Find contours
+            contours, _ = cv2.findContours(
+                m.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+            )
+
+            # Smooth contours and draw them
+            for contour in contours:
+                contour = cv2.approxPolyDP(contour, epsilon=0.01, closed=True)
+                cv2.drawContours(
+                    img, [contour], -1, (0, 0, 255, 0.4), thickness=1
+                )
+
+    img_uint8 = (img * 255).astype(np.uint8)
+    cv2.imwrite(save_path, img_uint8)
+
 
 mode = "image"
 if mode == "image":
@@ -85,3 +137,13 @@ elif mode == "video":
                 object_index: (mask_logits[i] > 0.0).cpu().numpy()
                 for i, object_index in enumerate(object_indexes)
             }
+elif mode == "automatic_mask":
+    sam2_checkpoint = "../stores/sam2/checkpoints/sam2_hiera_small.pt"
+    model_config = "sam2_hiera_s.yaml"
+    sam2_model = build_sam2(
+        model_config, sam2_checkpoint, device=device.type, apply_postprocessing=False
+    )
+    mask_generator = SAM2AutomaticMaskGenerator(sam2_model)
+    image = Image.open("./datas/images/truck.jpg")
+    image = np.array(image.convert("RGB"))
+    masks = mask_generator.generate(image)
