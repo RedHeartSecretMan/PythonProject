@@ -32,51 +32,27 @@ elif device.type == "mps":
     )
 
 
-def draw_anns(anns, save_path, borders=True):
+def draw_anns(img, anns, save_path, borders=True):
     if len(anns) == 0:
         return
-
-    # Sort annotations by area
     sorted_anns = sorted(anns, key=lambda x: x["area"], reverse=True)
-
-    # Create a blank image with alpha channel
-    img_height, img_width = sorted_anns[0]["segmentation"].shape
-    img = np.ones((img_height, img_width, 4), dtype=np.float32)
-    img[:, :, 3] = 0  # Alpha channel initialization to 0
-
+    overlay = img.copy()
+    overlay = cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR)
+    colored_mask = np.zeros_like(overlay)
     for ann in sorted_anns:
         m = ann["segmentation"]
-
-        # Generate a random color with alpha value 0.5
-        color_mask = np.concatenate([np.random.random(3), [0.5]])
-        color_mask_bgr = tuple(
-            (color_mask[:3] * 255).astype(int)
-        )  # Convert to BGR color
-
-        # Apply color to the mask
-        img[m] = np.concatenate(
-            [
-                np.full(m.shape, color_mask_bgr[0]),
-                np.full(m.shape, color_mask_bgr[1]),
-                np.full(m.shape, color_mask_bgr[2]),
-                np.full(m.shape, color_mask[3]),
-            ],
-            axis=-1,
-        )
-
+        color_mask = np.random.random(3) * 255
+        colored_mask[m] = color_mask
         if borders:
-            # Find contours
             contours, _ = cv2.findContours(
                 m.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )
-
-            # Smooth contours and draw them
             for contour in contours:
                 contour = cv2.approxPolyDP(contour, epsilon=0.01, closed=True)
-                cv2.drawContours(img, [contour], -1, (0, 0, 255, 0.4), thickness=1)
+                cv2.drawContours(colored_mask, [contour], -1, (0, 0, 255), thickness=1)
+    overlay = cv2.addWeighted(overlay, 7, colored_mask, 0.3, 0)
 
-    img_uint8 = (img * 255).astype(np.uint8)
-    cv2.imwrite(save_path, img_uint8)
+    cv2.imwrite(save_path, overlay)
 
 
 mode = "automatic_mask"
@@ -85,7 +61,8 @@ if mode == "image":
     sam2_config = "sam2_hiera_l.yaml"
     sam2_model = build_sam2(sam2_config, sam2_checkpoint, device=device.type)
     sam2_predictor = SAM2ImagePredictor(sam2_model)
-    image = Image.open("./datas/images/truck.jpg")
+    image_path = "./datas/images/truck.jpg"
+    image = Image.open(image_path)
     image = np.array(image.convert("RGB"))
     point_coords = np.array([[500, 375]])
     point_labels = np.array([1])
@@ -139,10 +116,15 @@ elif mode == "video":
 elif mode == "automatic_mask":
     sam2_checkpoint = "./stores/sam2/checkpoints/sam2_hiera_small.pt"
     model_config = "sam2_hiera_s.yaml"
+    image_path = "./datas/images/道路_无人机.jpg"
+    output_dir = "./results"
     sam2_model = build_sam2(
         model_config, sam2_checkpoint, device=device.type, apply_postprocessing=False
     )
     mask_generator = SAM2AutomaticMaskGenerator(sam2_model)
-    image = Image.open("./datas/images/truck.jpg")
+
+    image = Image.open(image_path).resize((1920, 1080))
     image = np.array(image.convert("RGB"))
     masks = mask_generator.generate(image)
+    output_path = os.path.join(output_dir, os.path.basename(image_path))
+    draw_anns(image, masks, output_path)
