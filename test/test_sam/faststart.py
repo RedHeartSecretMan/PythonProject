@@ -73,15 +73,13 @@ def draw_anns(anns, save_path, borders=True):
             # Smooth contours and draw them
             for contour in contours:
                 contour = cv2.approxPolyDP(contour, epsilon=0.01, closed=True)
-                cv2.drawContours(
-                    img, [contour], -1, (0, 0, 255, 0.4), thickness=1
-                )
+                cv2.drawContours(img, [contour], -1, (0, 0, 255, 0.4), thickness=1)
 
     img_uint8 = (img * 255).astype(np.uint8)
     cv2.imwrite(save_path, img_uint8)
 
 
-mode = "image"
+mode = "automatic_mask"
 if mode == "image":
     sam2_checkpoint = "./stores/sam2/checkpoints/sam2_hiera_large.pt"
     sam2_config = "sam2_hiera_l.yaml"
@@ -137,8 +135,9 @@ elif mode == "video":
                 object_index: (mask_logits[i] > 0.0).cpu().numpy()
                 for i, object_index in enumerate(object_indexes)
             }
+
 elif mode == "automatic_mask":
-    sam2_checkpoint = "../stores/sam2/checkpoints/sam2_hiera_small.pt"
+    sam2_checkpoint = "./stores/sam2/checkpoints/sam2_hiera_small.pt"
     model_config = "sam2_hiera_s.yaml"
     sam2_model = build_sam2(
         model_config, sam2_checkpoint, device=device.type, apply_postprocessing=False
