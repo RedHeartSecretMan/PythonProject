@@ -126,3 +126,7 @@
 	path = recognize-anything
 	url = https://github.com/xinyu1205/recognize-anything.git
 	branch = main
+[submodule "MiniCPM"]
+	path = MiniCPM
+	url = https://github.com/OpenBMB/MiniCPM.git
+	branch = main
