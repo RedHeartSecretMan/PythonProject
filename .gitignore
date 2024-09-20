@@ -4,6 +4,7 @@
 .idea/
 .vscode/
 .cache/
+.env/
 .venv*/
 .conda*/
 
