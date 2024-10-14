@@ -130,3 +130,7 @@
 	path = MiniCPM
 	url = https://github.com/OpenBMB/MiniCPM.git
 	branch = main
+[submodule "VideoMAEv2"]
+	path = VideoMAEv2
+	url = https://github.com/OpenGVLab/VideoMAEv2.git
+	branch = master
