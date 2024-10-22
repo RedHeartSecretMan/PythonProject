@@ -134,3 +134,7 @@
 	path = VideoMAEv2
 	url = https://github.com/OpenGVLab/VideoMAEv2.git
 	branch = master
+[submodule "dify"]
+	path = dify
+	url = https://github.com/langgenius/dify.git
+	branch = main
