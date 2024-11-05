@@ -138,3 +138,7 @@
 	path = dify
 	url = https://github.com/langgenius/dify.git
 	branch = main
+[submodule "VideoLingo"]
+	path = VideoLingo
+	url = https://github.com/Huanshere/VideoLingo.git
+	branch = main
