@@ -142,3 +142,6 @@
 	path = VideoLingo
 	url = https://github.com/Huanshere/VideoLingo.git
 	branch = main
+[submodule "DiffBIR"]
+	path = DiffBIR
+	url = https://github.com/XPixelGroup/DiffBIR.git
