@@ -145,3 +145,4 @@
 [submodule "DiffBIR"]
 	path = DiffBIR
 	url = https://github.com/XPixelGroup/DiffBIR.git
+	branch = main
