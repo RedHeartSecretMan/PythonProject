@@ -1,7 +1,6 @@
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
-
 model_name = "./stores/minicpm3/4b"
 texts = """介绍5个北京的景点。
            灵活运用多种修辞手法，字数800左右。"""

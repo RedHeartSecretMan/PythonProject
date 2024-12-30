@@ -1,5 +1,6 @@
 import os
 import sys
+
 import torch
 from PIL import Image
 
@@ -14,9 +15,8 @@ sys.path.append(
     )
 )
 
-from ram.models import ram_plus
 from ram import get_transform, inference_ram
-
+from ram.models import ram_plus
 
 # select the device for computation
 if torch.cuda.is_available():

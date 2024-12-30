@@ -1,6 +1,5 @@
 from ultralytics import YOLO
 
-
 # Load a model
 model = YOLO("./stores/weights/yolov5su.pt")
 

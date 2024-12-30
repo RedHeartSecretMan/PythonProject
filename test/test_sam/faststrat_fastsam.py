@@ -1,10 +1,10 @@
 import argparse
+import ast
 import os
 import sys
-import ast
+
 import torch
 from PIL import Image
-
 
 sys.path.append(
     os.path.abspath(
@@ -16,8 +16,9 @@ sys.path.append(
         )
     )
 )
-from fastsam import FastSAM, FastSAMPrompt
 from utils.tools import convert_box_xywh_to_xyxy
+
+from fastsam import FastSAM, FastSAMPrompt
 
 
 def parse_args():
@@ -77,7 +78,9 @@ def parse_args():
     device = torch.device(
         "cuda"
         if torch.cuda.is_available()
-        else "mps" if torch.backends.mps.is_available() else "cpu"
+        else "mps"
+        if torch.backends.mps.is_available()
+        else "cpu"
     )
     parser.add_argument(
         "--device", type=str, default=device, help="cuda:[0,1,2,3,4] or cpu"

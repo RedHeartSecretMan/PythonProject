@@ -1,8 +1,8 @@
-import subprocess
 import os
-from threading import current_thread
 import signal
+import subprocess
 import time
+from threading import current_thread
 
 
 class VLLMServerManager:

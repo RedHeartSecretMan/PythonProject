@@ -2,14 +2,13 @@ import os
 
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
-from PIL import Image
+import cv2
 import numpy as np
 import torch
-import cv2
+from PIL import Image
+from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 from sam2.build_sam import build_sam2, build_sam2_video_predictor
 from sam2.sam2_image_predictor import SAM2ImagePredictor
-from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
-
 
 # select the device for computation
 if torch.cuda.is_available():

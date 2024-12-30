@@ -1,5 +1,6 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
+
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 torch.manual_seed(0)
 model_path = "./stores/minicpm3/4b"
