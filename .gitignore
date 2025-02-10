@@ -5,10 +5,12 @@
 .vscode/
 .cache/
 .env/
+.cargo/
 .venv*/
 .conda*/
 
 __pycache__/
+.pytest_cache/
 .ipynb_checkpoints/
 *.dSYM/
 *.egg-info/
@@ -19,6 +21,8 @@ __pycache__/
 *builds/
 *dist/
 *dists/
+*target/
+*targets/
 *log/
 *logs/
 *result/
