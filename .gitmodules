@@ -146,3 +146,7 @@
 	path = DiffBIR
 	url = https://github.com/XPixelGroup/DiffBIR.git
 	branch = main
+[submodule "unsloth"]
+	path = unsloth
+	url = https://github.com/unslothai/unsloth.git
+	branch = main
