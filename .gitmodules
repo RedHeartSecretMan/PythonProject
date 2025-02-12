@@ -150,3 +150,7 @@
 	path = unsloth
 	url = https://github.com/unslothai/unsloth.git
 	branch = main
+[submodule "fish-speech"]
+	path = fish-speech
+	url = https://github.com/fishaudio/fish-speech.git
+	branch = main
