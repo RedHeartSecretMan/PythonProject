@@ -166,3 +166,7 @@
 	path = ml-depth-pro
 	url = https://github.com/apple/ml-depth-pro.git
 	branch = main
+[submodule "UniDepth"]
+	path = UniDepth
+	url = https://github.com/lpiccinelli-eth/UniDepth.git
+	branch = main
