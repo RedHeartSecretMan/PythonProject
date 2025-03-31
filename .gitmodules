@@ -162,3 +162,7 @@
 	path = Depth-Anything-V2
 	url = https://github.com/DepthAnything/Depth-Anything-V2.git
 	branch = main
+[submodule "ml-depth-pro"]
+	path = ml-depth-pro
+	url = https://github.com/apple/ml-depth-pro.git
+	branch = main
