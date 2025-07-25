@@ -1,1 +1,0 @@
-rsync -av --update ../../../dify/docker/ .
