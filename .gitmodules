@@ -174,3 +174,11 @@
 	path = higgs-audio
 	url = https://github.com/boson-ai/higgs-audio
 	branch = main
+[submodule "SenseVoice"]
+	path = SenseVoice
+	url = git@github.com:FunAudioLLM/SenseVoice.git
+	branch = main
+[submodule "CosyVoice"]
+	path = CosyVoice
+	url = git@github.com:FunAudioLLM/CosyVoice.git
+	branch = main

@@ -44,6 +44,16 @@ __pycache__/
 *.gif
 *.svg
 
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+*.mp3
+*.wav
+*.aac
+*.flac
+
 *.txt
 *.csv
 *.log
@@ -75,6 +85,7 @@ __pycache__/
 *.trt
 *.onnx
 *.model
+*.gguf
 *.safetensors
 *.torchscript
 
