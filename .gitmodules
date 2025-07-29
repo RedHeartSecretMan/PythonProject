@@ -170,3 +170,7 @@
 	path = UniDepth
 	url = https://github.com/lpiccinelli-eth/UniDepth.git
 	branch = main
+[submodule "higgs-audio"]
+	path = higgs-audio
+	url = https://github.com/boson-ai/higgs-audio
+	branch = main
