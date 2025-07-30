@@ -1,5 +1,3 @@
-# SenseVoice App Dependencies
-PyQt5>=5.15.0
 torch
 torchaudio
 modelscope
@@ -7,5 +5,3 @@ huggingface_hub
 funasr
 funasr-onnx
 numpy
-nuitka>=1.8.0
-ordered-set
