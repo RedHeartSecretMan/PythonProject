@@ -182,3 +182,6 @@
 	path = CosyVoice
 	url = git@github.com:FunAudioLLM/CosyVoice.git
 	branch = main
+[submodule "dinov3"]
+	path = dinov3
+	url = git@github.com:facebookresearch/dinov3.git
