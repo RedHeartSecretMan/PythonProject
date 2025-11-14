@@ -185,6 +185,12 @@
 [submodule "dinov3"]
 	path = dinov3
 	url = git@github.com:facebookresearch/dinov3.git
+	branch = main
 [submodule "HivisionIDPhotos"]
 	path = HivisionIDPhotos
 	url = git@github.com:Zeyi-Lin/HivisionIDPhotos.git
+	branch = master
+[submodule "anomalib"]
+	path = anomalib
+	url = git@github.com:open-edge-platform/anomalib.git
+	branch = main
