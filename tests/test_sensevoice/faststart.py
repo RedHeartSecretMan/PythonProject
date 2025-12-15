@@ -16,7 +16,7 @@ result = model.generate(
     language="auto",  # "zh", "en", "yue", "ja", "ko", "nospeech"
     use_itn=True,
     batch_size_s=60,
-    merge_vad=True,  #
+    merge_vad=True,
     merge_length_s=15,
 )
 text = rich_transcription_postprocess(result[0]["text"])
